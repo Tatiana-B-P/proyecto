@@ -7,11 +7,10 @@ public class Cliente {
     private String documentoIdentidad;
     private Cuenta cuenta;
     
-    public Cliente(String nombre, String direccion, String documentoIdentidad, Cuenta cuenta) {
+    public Cliente(String nombre, String direccion, String documentoIdentidad) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.documentoIdentidad = documentoIdentidad;
-        this.cuenta = cuenta;
     }
 
     public String getNombre() {

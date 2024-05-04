@@ -44,7 +44,7 @@ public class Main {
                 default:
                     System.out.println("Opción no válida. Por favor, seleccione una opción válida.");
             }
-            
+            //scanner.close();
         }
     }
 }
