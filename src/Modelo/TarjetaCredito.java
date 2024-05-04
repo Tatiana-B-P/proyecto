@@ -6,10 +6,10 @@ public class TarjetaCredito {
     private double deuda;
 
     // Constructor, getters y setters
-    public TarjetaCredito(int numero, Cliente cliente, double deuda) {
+    public TarjetaCredito(int numero, Cliente cliente) {
         this.numero = numero;
         this.cliente = cliente;
-        this.deuda = deuda;
+        this.deuda = 0;
     }
 
     public int getNumero() {

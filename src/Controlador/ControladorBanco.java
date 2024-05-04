@@ -6,9 +6,11 @@ import Modelo.*;
 
 public class ControladorBanco implements interfazBanco {
     private ArrayList<Cliente> clientes;
+    private ArrayList<TarjetaCredito> tarjetas;
 
     public ControladorBanco() {
         clientes = new ArrayList<>();
+        tarjetas = new ArrayList<>();
     }
 
     @Override
@@ -16,6 +18,17 @@ public class ControladorBanco implements interfazBanco {
         Cliente cliente = new Cliente(nombre, direccion, documentoIdentidad);
         clientes.add(cliente);
         return cliente;
+    }
+    
+    @Override
+    public Cuenta crearCuentaAhorros(double balance, double interes) {
+    	Cuenta cuenta = new CuentaAhorros(balance, interes);
+    	return cuenta;
+    }
+    
+    @Override
+    public void crearCuentaCredito(double balance) {
+    	new CuentaCredito(balance, tarjetas);
     }
 
     @Override
@@ -53,6 +66,17 @@ public class ControladorBanco implements interfazBanco {
     public ArrayList<Cliente> getClientes() {
         return clientes;
     }
+    
+    public TarjetaCredito crearTarjeta(int numero, Cliente cliente) {
+    	TarjetaCredito tarjeta = new TarjetaCredito(numero, cliente);
+    	tarjetas.add(tarjeta);
+    	return tarjeta;
+    }
+
+	@Override
+	public ArrayList<TarjetaCredito> getTarjetas() {
+		return tarjetas;
+	}
 
 }
 

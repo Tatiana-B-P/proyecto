@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import Controlador.interfazBanco;
 import Modelo.Cliente;
+import Modelo.Cuenta;
 
 public class VistaBanco {
     private interfazBanco controlador;
@@ -22,25 +23,31 @@ public class VistaBanco {
         String direccion = scanner.nextLine();
         System.out.println("Ingrese el documento de identidad del cliente:");
         String documentoIdentidad = scanner.nextLine();
+        Cliente cliente = controlador.crearCliente(nombre, direccion, documentoIdentidad);
+        
         System.out.println("Ingrese el saldo inicial de la cuenta del cliente:");
         double saldo = scanner.nextDouble();
+        
         
         System.out.println("Tipo de cuenta que desea crear: ");
         System.out.println("1. Cuenta de ahorros.");
         System.out.println("2. Cuenta de credito.");
         int opcion = scanner.nextInt();
+        
         if (opcion == 1) {
         	System.out.println("Ingrese el interes de la cuenta del cliente:");
             double interes = scanner.nextDouble();
-            controlador.crearCliente(nombre, direccion, documentoIdentidad);
+            Cuenta cuenta = controlador.crearCuentaAhorros(saldo, interes);
+            cliente.setCuenta(cuenta);
         }
         else {
-        	
+        	System.out.println("Digite los datos de la tarjeta perteneciente a la cuenta credito.");
+        	System.out.println("Ingrese el numero de la tarjeta credito del cliente:");
+            int numero = scanner.nextInt();
+            controlador.crearTarjeta(numero, cliente);
+            controlador.crearCuentaCredito(numero);
+            
         }
-        
-        
-
-        
         System.out.println("Cliente creado correctamente.");
     }
 
