@@ -28,6 +28,7 @@ public class CuentaAhorros extends Cuenta {
             throw new ArithmeticException("No se puede depositar una cantidad negativa.");
         }
         balance += cantidad;
+        System.out.println("Su saldo actual es: " + balance);
     }
 
     @Override
@@ -36,5 +37,6 @@ public class CuentaAhorros extends Cuenta {
             throw new ArithmeticException("Cantidad inválida o saldo insuficiente.");
         }
         balance -= cantidad;
+        System.out.println("Su saldo actual es: " + balance);
     }
 }

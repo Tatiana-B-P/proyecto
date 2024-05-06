@@ -1,5 +1,6 @@
 package Vista;
 
+import java.util.InputMismatchException;
 // VistaBanco.java
 import java.util.Scanner;
 
@@ -24,15 +25,14 @@ public class VistaBanco {
         System.out.println("Ingrese el documento de identidad del cliente:");
         String documentoIdentidad = scanner.nextLine();
         Cliente cliente = controlador.crearCliente(nombre, direccion, documentoIdentidad);
-        
-        System.out.println("Ingrese el saldo inicial de la cuenta del cliente:");
-        double saldo = scanner.nextDouble();
-        
-        
+          
         System.out.println("Tipo de cuenta que desea crear: ");
         System.out.println("1. Cuenta de ahorros.");
         System.out.println("2. Cuenta de credito.");
         int opcion = scanner.nextInt();
+        
+        System.out.println("Ingrese el saldo inicial de la cuenta del cliente:");
+        double saldo = scanner.nextDouble();
         
         if (opcion == 1) {
         	System.out.println("Ingrese el interes de la cuenta del cliente:");
@@ -45,7 +45,8 @@ public class VistaBanco {
         	System.out.println("Ingrese el numero de la tarjeta credito del cliente:");
             int numero = scanner.nextInt();
             controlador.crearTarjeta(numero, cliente);
-            controlador.crearCuentaCredito(numero);
+            Cuenta cuenta = controlador.crearCuentaCredito(saldo);
+            cliente.setCuenta(cuenta);
             
         }
         System.out.println("Cliente creado correctamente.");
@@ -61,8 +62,10 @@ public class VistaBanco {
             try {
                 controlador.depositar(cliente, cantidad);
                 System.out.println("Depósito realizado correctamente.");
-            } catch (ArithmeticException | NullPointerException e) {
+            } catch (ArithmeticException | NullPointerException e ) {
                 System.out.println(e.getMessage());
+            }catch (InputMismatchException e) {
+            	System.out.println(e.getMessage());
             }
         }
     }

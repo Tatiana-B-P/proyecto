@@ -27,8 +27,8 @@ public class ControladorBanco implements interfazBanco {
     }
     
     @Override
-    public void crearCuentaCredito(double balance) {
-    	new CuentaCredito(balance, tarjetas);
+    public Cuenta crearCuentaCredito(double balance) {
+    	return new CuentaCredito(balance, tarjetas);
     }
 
     @Override
